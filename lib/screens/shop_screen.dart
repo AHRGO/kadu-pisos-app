@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:kadu_pisos/screens/product_details_screen.dart';
+//import 'package:provider/provider.dart';
 
-import '../models/cart_model.dart';
+//import '../models/cart_model.dart';
 import '../repositories/piso_repository.dart';
 import '../components/custom_app_bar.dart';
 import '../screens/cart_screen.dart';
@@ -42,7 +43,12 @@ class _ShopScreenState extends State<ShopScreen> {
               subtitle: Text(piso.description),
               trailing: CartItemControl(piso),
               onTap: () {
-                // TODO: item details screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetailsScreen(piso: piso),
+                  ),
+                );
               },
             ),
           );
