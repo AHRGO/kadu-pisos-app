@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:kadu_pisos/screens/product_details_screen.dart';
-//import 'package:provider/provider.dart';
-
-//import '../models/cart_model.dart';
 import '../repositories/piso_repository.dart';
 import '../components/custom_app_bar.dart';
 import '../screens/cart_screen.dart';
@@ -33,23 +31,48 @@ class _ShopScreenState extends State<ShopScreen> {
               ),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListTile(
-              leading: Image.asset(piso.image),
-              title: Text(
-                piso.name,
-                style: const TextStyle(
-                    fontWeight: FontWeight.bold, color: Color(0xFFF2C026)),
-              ),
-              subtitle: Text(piso.description),
-              trailing: CartItemControl(piso),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductDetailsScreen(piso: piso),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    child: Image.asset(piso.image, width: 50, height: 50),
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProductDetailsScreen(piso: piso),
+                      ),
+                    ),
                   ),
-                );
-              },
+                  const SizedBox(width: 30),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              ProductDetailsScreen(piso: piso),
+                        ),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            piso.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFFF2C026),
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(piso.description),
+                        ],
+                      ),
+                    ),
+                  ),
+                  CartItemControl(piso),
+                ],
+              ),
             ),
           );
         },

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/shop_screen.dart';
+import 'screens/intro_screen.dart';
 import 'models/cart_model.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: ShopScreen(),
+      home: IntroScreen(),
     );
   }
 }
